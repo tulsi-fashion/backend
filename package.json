@@ -1,0 +1,53 @@
+{
+  "name": "tulshi-fashion-backend",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "build": "rimraf dist && tsc",
+    "start": "node dist/server.js",
+    "dev": "nodemon server.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "Tulshi Fashion Backend API",
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.749.0",
+    "@aws-sdk/lib-storage": "^3.749.0",
+    "@aws-sdk/s3-request-presigner": "^3.958.0",
+    "@types/bcrypt": "^5.0.2",
+    "@types/cookie-parser": "^1.4.9",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/jsonwebtoken": "^9.0.8",
+    "@types/morgan": "^1.9.10",
+    "@types/multer": "^1.4.12",
+    "@types/multer-s3": "^3.0.3",
+    "@types/node": "^22.0.0",
+    "bcrypt": "^5.1.1",
+    "class-sanitizer": "^1.0.1",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.1",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.1",
+    "multer": "^1.4.5-lts.1",
+    "multer-s3": "^3.0.1",
+    "pg": "^8.13.1",
+    "reflect-metadata": "^0.2.2",
+    "rimraf": "^6.0.1",
+    "sequelize": "^6.37.8",
+    "sequelize-typescript": "^2.1.6",
+    "uuid": "^8.3.2",
+    "winston": "^3.18.3",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/uuid": "^10.0.0",
+    "nodemon": "^3.1.9",
+    "ts-node": "^10.9.2",
+    "typescript": "~5.8.3"
+  }
+}
