@@ -26,6 +26,14 @@ export const db = new Sequelize({
   username: db_config.DB.DB_USER,
   password: db_config.DB.DB_PASSWORD,
   logging: db_config.SERVER_MODE === 'DEV' ? console.log : false,
+  ...(db_config.SERVER_MODE !== 'DEV' && {
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false,
+      },
+    },
+  }),
   pool: {
     max: 10,
     min: 0,
