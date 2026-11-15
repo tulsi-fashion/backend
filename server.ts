@@ -50,7 +50,7 @@ const httpServer = createServer(app);
 })();
 
 // CORS
-const allowedOrigins: string[] = (process.env.ALLOWED_ORIGINS || 'http://localhost:5173')
+const allowedOrigins: string[] = (process.env.ALLOWED_ORIGINS || '*')
   .split(',')
   .map((o) => o.trim());
 
@@ -128,12 +128,11 @@ httpServer.listen(port, () => {
   logger.info(`Tulshi Fashion Backend running at http://localhost:${port}`);
   logger.info(`Environment: ${process.env.SERVER_MODE || 'DEV'}`);
 
-  // Self-ping every minute to prevent Render free-tier shutdown
   const selfUrl = process.env.BACKEND_URL;
   if (selfUrl) {
     const { get } = selfUrl.startsWith('https') ? require('https') : require('http');
     setInterval(() => {
-      get(`${selfUrl}/`, (res: any) => {
+      get(`${selfUrl}/health`, (res: any) => {
         logger.info(`Keep-alive ping → ${res.statusCode}`);
       }).on('error', (err: Error) => {
         logger.warn(`Keep-alive ping failed: ${err.message}`);
