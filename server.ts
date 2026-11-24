@@ -11,6 +11,7 @@ import { createServer } from 'http';
 import { db } from './src/config/db';
 import { requestIdMiddleware } from './src/middleware/requestId';
 import { logger } from './src/utils/logger';
+import { startDatabaseBackupCron } from './src/cron/dbBackup';
 import Handler from './src/common/handler';
 import { RES_MESSAGE, RES_STATUS, STATUS_CODE } from './src/common/statusMessageCode';
 
@@ -128,6 +129,8 @@ httpServer.listen(port, () => {
   logger.info(`Tulshi Fashion Backend running at http://localhost:${port}`);
   logger.info(`Environment: ${process.env.SERVER_MODE || 'DEV'}`);
 
+  startDatabaseBackupCron();
+
   const selfUrl = process.env.BACKEND_URL;
   if (selfUrl) {
     const { get } = selfUrl.startsWith('https') ? require('https') : require('http');
@@ -137,6 +140,6 @@ httpServer.listen(port, () => {
       }).on('error', (err: Error) => {
         logger.warn(`Keep-alive ping failed: ${err.message}`);
       });
-    }, 60_000);
+    }, 2 * 60_000);
   }
 });
